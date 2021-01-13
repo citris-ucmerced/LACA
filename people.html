@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Labor and Automation in California Agriculture </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="homepage is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="logo container">
+                <div>
+                    <h1><a href="index.html" id="logo"></a></h1>
+                    <p><strong>LACA: </strong>Labor and Automation in California Agriculture </p>
+                </div>
+            </div>
+        </header>
+        <nav id="nav">
+            <ul>
+                <li class="current"><a href="index.html">Home</a></li>
+                <li> <a href="people">People</a> </li>
+                <li> <a href="news">News</a> </li>
+
+
+            </ul>
+        </nav>
+        <div
+            style="position:fixed;width:500px;height:40px;left:-75px;top:100px; transform: rotate(-45deg);z-index:10000;background-color:lightcoral;">
+            <h2 style="color:white;">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Site under construction!</h2>
+        </div>
+        <!-- Banner -->
+        <section id="banner">
+            <div class="content">
+                <h2>Why LACA?</h2>
+                <p>This MRPI will focus on food system resilience and the emergent role of human-centered agricultural
+                    technology (agritech) </p>
+                <a href="index/#main" class="button scrolly">See Our Approach</a>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <section id="main">
+            <div class="container">
+                <div class="row gtr-200">
+                    <div class="col-12">
+                        <section id="people">
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row gtr-200">
+                <div class="col-12">
+
+                    <!-- About -->
+                    <section id="contact">
+                        <h2 class="major"><span>Contact us</span></h2>
+                        <p>
+                            CONTACT
+                        </p>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul class="menu">
+                    <li>&copy; 2021; CITRIS & Banatao Institute; All rights reserved;</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.csv.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js//participant.js"></script>
+    <script>
+        $(function () {
+
+            $.get("/people.csv").then(function (text, status, xhr) {
+                var data = $.csv.toObjects(text);
+                $("#people").append(
+                    $.parseHTML(
+                        '<section class="box highlight"><h2 class="major2">' +
+                        '<span>Investigators</span></h2><div class="row">'
+                    )
+                );
+                for (var i = 0; i < data.length; i++) {
+                    $("#people").append(
+                        $.parseHTML(
+                            '<div style="display:inline-block;width:25%;height:24em;padding:60px;vertical-align:top;">' +
+                            '<section class="box feature">' +
+                            '<a href="#" class="image featured"><img' +
+                            ' src="images/participants/' + data[i].ID + '.jpg" alt="" /></a>' +
+                            '<h2>' + data[i].FNAME + ' ' + data[i].LNAME + '</h2>' +
+                            '<h5>' + data[i].TITLE + '</h5>' +
+                            '<h5>' + data[i].INSTITUTION + '</h5>' +
+                            '</section>' +
+                            '</div>'
+                        )
+                    );
+                }
+                $("#people").append(
+                    $.parseHTML(
+                        '</div></section>'
+                    )
+                );
+            });
+        });
+    </script>
+</body>
+
+</html>

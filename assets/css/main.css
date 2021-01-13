@@ -2246,6 +2246,15 @@ input, select, textarea {
 		margin: 0 0 0.5em 0;
 	}
 
+	h2.major2 {
+		text-align: center;
+		position: relative;
+		border-top: solid 5px #e7eae8;
+		padding: 10px;
+		border-bottom: solid 5px #e7eae8;
+		font-size: 200%;
+	}
+
 	.box.page-content header > p {
 		font-size: 1.65em;
 		margin: 0 0 0.5em 0;
