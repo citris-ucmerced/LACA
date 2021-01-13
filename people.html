@@ -21,7 +21,7 @@
         </header>
         <nav id="nav">
             <ul>
-                <li class="current"><a href="index.html">Home</a></li>
+                <li class="current"><a href="index">Home</a></li>
                 <li> <a href="people">People</a> </li>
             </ul>
         </nav>
@@ -46,10 +46,12 @@
                     <div class="col-12">
                         <section id="people">
                         </section>
+						<img style="width:100%;" src="images/logos.png" alt="" />
 
                     </div>
                 </div>
             </div>
+
         </section>
     </div>
 
@@ -98,30 +100,38 @@
 
             $.get("/people.csv").then(function (text, status, xhr) {
                 var data = $.csv.toObjects(text);
-                $("#people").append(
-                    $.parseHTML(
-                        '<section class="box highlight"><h2 class="major2">' +
-                        '<span>Investigators</span></h2><div class="row">'
-                    )
-                );
+
                 for (var i = 0; i < data.length; i++) {
-                    $("#people").append(
-                        $.parseHTML(
-                            '<div style="display:inline-block;width:25%;height:24em;padding:60px;vertical-align:top;">' +
-                            '<section class="box feature">' +
-                            '<a href="#" class="image featured"><img' +
-                            ' src="images/participants/' + data[i].ID + '.jpg" alt="" /></a>' +
-                            '<h2>' + data[i].FNAME + ' ' + data[i].LNAME + '</h2>' +
-                            '<h5>' + data[i].TITLE + '</h5>' +
-                            '<h5>' + data[i].INSTITUTION + '</h5>' +
-                            '</section>' +
-                            '</div>'
-                        )
-                    );
+
+                    switch (data[i].ID) {
+                        case "HEADER":
+                            $("#people").append(
+                                $.parseHTML(
+                                    '<section class="box highlight"><h2 class="major2">' +
+                                    '<span>'+ data[i].LNAME +'</span></h2><div class="row">'
+                                )
+                            );
+                            break;
+                        default:
+                            $("#people").append(
+                                $.parseHTML(
+                                    '<div style="display:inline-block;width:25%;height:30em;padding:4px;vertical-align:top;">' +
+                                    '<section class="box feature">' +
+                                    '<a href="#" class="image featured"><img' +
+                                    ' src="images/participants/' + data[i].ID + '.jpg" alt="" /></a>' +
+                                    '<h2>' + data[i].FNAME + ' ' + data[i].LNAME + '</h2>' +
+                                    '<h5>' + data[i].TITLE + '</h5>' +
+                                    '<h5>' + data[i].INSTITUTION + '</h5>' +
+                                    '</section>' +
+                                    '</div>'
+                                )
+                            );
+                            break;
+                    }
                 }
                 $("#people").append(
                     $.parseHTML(
-                        '</div></section>'
+                        '</section>'
                     )
                 );
             });
