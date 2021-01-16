@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="index">Home</a></li>
                 <li><a href="people">People</a></li>
-				<li><a href="news">News</a></li>
+                <li><a href="news">News</a></li>
             </ul>
         </nav>
 
@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <section id="news">
                         </section>
-						<img style="width:100%;" src="images/logos.png" alt="" />
+                        <img style="width:100%;" src="images/logos.png" alt="" />
 
                     </div>
                 </div>
@@ -49,15 +49,15 @@
         <div class="container">
             <div class="row gtr-200">
                 <div class="col-12">
-
-                    <!-- About -->
                     <section id="contact">
                         <h2 class="major"><span>Contact us</span></h2>
                         <p>
-                            CONTACT
+                            PI: Thomas Harmon <br>
+                            Professor, Civil & Environmental Engineering<br>
+                            University of California, Merced<br>
+                            laca@ucmerced.edu
                         </p>
                     </section>
-
                 </div>
             </div>
 
@@ -84,43 +84,43 @@
     <script src="assets/js//participant.js"></script>
     <script>
         $(function () {
-            $.get("/news.csv").then(function(text, status, xhr) {
-          var data = $.csv.toObjects(text);
-          for (var i = 0; i < data.length; i++) {
-            switch (data[i].ID) {
-              default:
-                $("#news").append(
-                  $.parseHTML(
-                    '<article class="box post">' +
-                      "<header>" +
-                      "<h3>" +
-                      '<a href="' +
-                      data[i].LINK +
-                      '">' +
-                      data[i].TITLE +
-                      "</a>" +
-                      "</h3>" +
-                      data[i].DATE +
-                      "</header>" +
-                      '<a href="' +
-                      data[i].LINK +
-                      '" class="image featured">' +
-                      '<img src="images/news/' +
-                      data[i].ID +
-                      '.jpg" alt="" />' +
-                      "</a>" +
-                      "<p>" +
-                      data[i].DESCRIPTION + 
-                      (((data[i].LINK).toString() === 'NO_BUTTON') ? '' : '<center> <a class="button" href="' + data[i].LINK + '">Register</a> ') +
-                      "</p>" +
-                      "</article>"
-                  )
-                );
-                break;
-            }
-          }
+            $.get("/news.csv").then(function (text, status, xhr) {
+                var data = $.csv.toObjects(text);
+                for (var i = 0; i < data.length; i++) {
+                    switch (data[i].ID) {
+                        default:
+                            $("#news").append(
+                                $.parseHTML(
+                                    '<article class="box post">' +
+                                    "<header>" +
+                                    "<h3>" +
+                                    '<a href="' +
+                                    data[i].LINK +
+                                    '">' +
+                                    data[i].TITLE +
+                                    "</a>" +
+                                    "</h3>" +
+                                    data[i].DATE +
+                                    "</header>" +
+                                    '<a href="' +
+                                    data[i].LINK +
+                                    '" class="image featured">' +
+                                    '<img src="images/news/' +
+                                    data[i].ID +
+                                    '.jpg" alt="" />' +
+                                    "</a>" +
+                                    "<p>" +
+                                    data[i].DESCRIPTION +
+                                    (((data[i].LINK).toString() === 'NO_BUTTON') ? '' : '<center> <a class="button" href="' + data[i].LINK + '">Register</a> ') +
+                                    "</p>" +
+                                    "</article>"
+                                )
+                            );
+                            break;
+                    }
+                }
+            });
         });
-    });
     </script>
 </body>
 
