@@ -118,15 +118,17 @@
                         default:
                             $("#people").append(
                                 $.parseHTML(
+                                    // '<a id =' + data[i].ID + '>'+
                                     '<div style="display:inline-block;width:25%;height:30em;padding:4px;vertical-align:top;">' +
                                     '<section class="box feature">' +
-                                    '<a href="#" class="image featured"><img' +
+                                    '<a class="image featured"><img' +
                                     ' src="images/participants/' + data[i].ID + '.jpg" alt="" /></a>' +
                                     '<h2>' + data[i].FNAME + ' ' + data[i].LNAME + '</h2>' +
                                     '<h5>' + data[i].TITLE + '</h5>' +
                                     '<h5>' + data[i].INSTITUTION + '</h5>' +
                                     '</section>' +
                                     '</div>'
+                                    // + '</a>'
                                 )
                             );
                             break;
