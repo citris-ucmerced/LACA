@@ -124,7 +124,7 @@
         modal.onclick = function () { modal.style.display = "none"; window.location.hash = ""; }
 
         function loadModal(id) {
-            if (id != '' && getInfo(id).BIO != "") {
+            if (id != '') {
                 modal.style.display = "block";
                 var logo = document.getElementById('modal-image');
                 logo.src = '/images/participants/' + id + '.jpg';
