@@ -3,7 +3,7 @@
 
 <head>
     <title>Labor and Automation in California Agriculture </title>
-	<link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="images/favicon.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -16,7 +16,7 @@
             <div class="logo container">
                 <div>
                     <h1><a href="index.html" id="logo"></a>Labor and Automation in California Agriculture</h1>
-                    
+
                 </div>
             </div>
         </header>
@@ -48,8 +48,27 @@
                     <div class="col-12">
                         <section id="people">
                         </section>
-                        <img style="width:100%;" src="images/logos.png" alt="" />
+                        
+                        <div id="people-modal" class="modal">
+                            <img id="modal-image" class="image featured"
+                                style="box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.45); margin:3em; margin-bottom: 1em; width:20%; float:left"
+                                src="">
+                            <h2 class="namePosition" id="modal-name" style="color:white">
 
+                            </h2>
+                            <br>
+                            <h3 id="modal-title" style="color:white">
+
+                            </h3>
+                            <h3 id="modal-institution" style="color:white">
+
+                            </h3>
+                            <p id="modal-biography" style="margin:3em; color:white">
+                                No Bio Found
+                            </p>
+                        </div>
+
+                        <img style="width:100%;" src="images/logos.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -99,10 +118,34 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js//participant.js"></script>
     <script>
+        var data;
+        var modal = document.getElementById('people-modal');
+        modal.style.display = "none";
+        modal.onclick = function () { modal.style.display = "none"; window.location.hash = ""; }
+
+        function loadModal(id) {
+            if (id != '' && getInfo(id).BIO != "") {
+                modal.style.display = "block";
+                var logo = document.getElementById('modal-image');
+                logo.src = '/images/participants/' + id + '.jpg';
+                var name = document.getElementById('modal-name');
+                name.innerHTML = getInfo(id).FNAME + " " + getInfo(id).LNAME;
+                var title = document.getElementById('modal-title');
+                title.innerHTML = getInfo(id).TITLE;
+                var institution = document.getElementById('modal-institution');
+                institution.innerHTML = getInfo(id).INSTITUTION;
+                var biography = document.getElementById('modal-biography');
+                biography.innerHTML = getInfo(id).BIO + '<hr>';
+            }
+        }
+
         $(function () {
+            $(window).on('hashchange', function (event) {
+                loadModal(window.location.hash.substring(1));
+            });
 
             $.get("/people.csv").then(function (text, status, xhr) {
-                var data = $.csv.toObjects(text);
+                data = $.csv.toObjects(text);
 
                 for (var i = 0; i < data.length; i++) {
 
@@ -121,14 +164,14 @@
                                     // '<a id =' + data[i].ID + '>'+
                                     '<div style="display:inline-block;width:20%;height:25em;padding:4px;vertical-align:top;">' +
                                     '<section class="box feature">' +
-                                    '<a class="image featured"><img' +
-                                    ' src="images/participants/' + data[i].ID + '.jpg" alt="" /></a>' +
+                                    '<a class="image featured" style="text-decoration: none;" href= "#' + data[i].ID + '">' +
+                                    '<img src="images/participants/' + data[i].ID + '.jpg" alt="" />' +
                                     '<h2>' + data[i].FNAME + ' ' + data[i].LNAME + '</h2>' +
+                                    '</a>' +
                                     '<h5>' + data[i].TITLE + '</h5>' +
                                     '<h5>' + data[i].INSTITUTION + '</h5>' +
                                     '</section>' +
                                     '</div>'
-                                    // + '</a>'
                                 )
                             );
                             break;
@@ -140,7 +183,15 @@
                     )
                 );
             });
+            // loadModal(window.location.hash.substring(1));
         });
+        function getInfo(person) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].ID == person) {
+                    return data[i];
+                }
+            }
+        }
     </script>
 </body>
 
