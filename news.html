@@ -3,7 +3,7 @@
 
 <head>
     <title>Labor and Automation in California Agriculture </title>
-	<link rel="icon" href="images/favicon.png">
+    <link rel="icon" href="images/favicon.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -15,15 +15,15 @@
         <header id="header">
             <div class="logo container">
                 <div>
-                    <h2>Recent News</h2>
+                    <h1 id="logo">Recent News</h1>
                 </div>
             </div>
         </header>
         <nav id="nav">
             <a href="/index">
-				<img style="position:relative; z-index: 100000; margin: 0.1em 0em 0em .5em; float:left; height:55px; width:55px"
-					class="image featured" src="/images/LOGO_FC.png">
-			</a>
+                <img style="position:relative; z-index: 100000; margin: 0.1em 0em 0em .5em; float:left; height:55px; width:55px"
+                    class="image featured" src="/images/LOGO_FC.png">
+            </a>
             <ul>
                 <li><a href="index">Home</a></li>
                 <li><a href="people">People</a></li>
@@ -117,7 +117,7 @@
                                     "</a>" +
                                     "<p>" +
                                     data[i].DESCRIPTION +
-                                    (((data[i].LINK).toString() === 'NO_BUTTON') ? '' : '<center> <a class="button" href="' + data[i].LINK + '" target=_blank>'+ data[i].BUTTON_TEXT +'</a> ') +
+                                    (((data[i].LINK).toString() === 'NO_BUTTON') ? '' : '<center> <a class="button" href="' + data[i].LINK + '" target=_blank>' + data[i].BUTTON_TEXT + '</a> ') +
                                     "</p>" +
                                     "</article>"
                                 )
