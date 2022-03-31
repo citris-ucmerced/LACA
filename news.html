@@ -27,7 +27,7 @@
             <ul>
                 <li><a href="index">Home</a></li>
                 <li><a href="people">People</a></li>
-                <li><a href="news">News</a></li>
+                <li><a href="news">News & Events</a></li>
             </ul>
         </nav>
 
@@ -92,9 +92,14 @@
         $(function () {
             $.get("/news.csv").then(function (text, status, xhr) {
                 var data = $.csv.toObjects(text);
+                var old = false;
                 for (var i = 0; i < data.length; i++) {
                     switch (data[i].ID) {
+                        case "OLD":
+                            old = true;
+                            break;
                         default:
+                            if(!old){
                             $("#news").append(
                                 $.parseHTML(
                                     '<article class="box post">' +
@@ -122,6 +127,7 @@
                                     "</article>"
                                 )
                             );
+                        }
                             break;
                     }
                 }
